@@ -144,7 +144,7 @@ int main (int argc, char * const argv[])
         exit(0);
     }
     
-    std::cout << "* Collecting dependencies"; fflush(stdout);
+    std::cout << "* Collecting dependencies\n"; fflush(stdout);
     
     const int amount = Settings::fileToFixAmount();
     for(int n=0; n<amount; n++)

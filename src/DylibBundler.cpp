@@ -199,6 +199,7 @@ void addDependency(std::string path, std::string filename)
 void collectDependencies(std::string filename, std::vector<std::string>& lines)
 {
     // execute "otool -l" on the given file and collect the command's output
+    std::cerr << "Open " << filename << std::endl;
     std::string cmd = "otool -l \"" + filename + "\"";
     std::string output = system_get_output(cmd);
 
@@ -241,12 +242,12 @@ void collectDependencies(std::string filename)
     std::vector<std::string> lines;
     collectDependencies(filename, lines);
        
-    std::cout << "."; fflush(stdout);
+    //std::cout << "."; fflush(stdout);
     
     const int line_amount = lines.size();
     for(int n=0; n<line_amount; n++)
     {
-        std::cout << "."; fflush(stdout);
+        //std::cout << "."; fflush(stdout);
         if(lines[n][0] != '\t') continue; // only lines beginning with a tab interest us
         if( lines[n].find(".framework") != std::string::npos ) continue; //Ignore frameworks, we can not handle them
 
@@ -272,7 +273,7 @@ void collectSubDependencies()
         dep_amount = deps.size();
         for(int n=0; n<dep_amount; n++)
         {
-            std::cout << "."; fflush(stdout);
+            //std::cout << "."; fflush(stdout);
             std::vector<std::string> lines;
             std::string original_path = deps[n].getOriginalPath();
             if (isRpath(original_path))
